@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-`tapsend` is intended to implement a sender for the **Telocator Alphanumeric Protocol
+`tapdial` is intended to implement a sender for the **Telocator Alphanumeric Protocol
 (TAP)** — the 1980s/90s dial-up protocol for injecting alphanumeric pages into a
 paging terminal. The role being built is the **remote entry device** (the caller), not
 the paging terminal (the answerer).
@@ -75,12 +75,12 @@ to `TAP_V1P8.md`.
 - **Line endings (§4.0):** treat `<CR>`, `<LF>`, `<CR><LF>`, `<LF><CR>` all as
   end-of-line when reading from the terminal; ignore an `<LF>` adjacent to a `<CR>`.
 
-## Running against real hardware (`tapsend.py`)
+## Running against real hardware (`tapdial.py`)
 
-`tapsend.py` is the remote-entry-device implementation. Send one page with:
+`tapdial.py` is the remote-entry-device implementation. Send one page with:
 
 ```bash
-./tapsend.py --port /dev/cu.usbserial-AB0NW409 --baud 2400 \
+./tapdial.py --port /dev/cu.usbserial-AB0NW409 --baud 2400 \
     --dial <access#> --pager <sms#> --message "text"
 ```
 

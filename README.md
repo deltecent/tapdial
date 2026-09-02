@@ -1,9 +1,9 @@
-# tapsend
+# tapdial
 
 Send a single alphanumeric page (SMS) to a pager or cell number by dialing a paging
 terminal over a modem and speaking the **Telocator Alphanumeric Protocol (TAP)**.
 
-`tapsend.py` plays the *remote entry device* (the caller) side of TAP v1.8: it dials
+`tapdial.py` plays the *remote entry device* (the caller) side of TAP v1.8: it dials
 the access number, performs the automatic-mode logon, delivers one message to one
 destination, and prints the entire serial session as it happens. Protocol behavior
 follows `TAP_V1P8.md` in this repository, which is the authoritative reference.
@@ -22,14 +22,14 @@ follows `TAP_V1P8.md` in this repository, which is the authoritative reference.
 ## Usage
 
 ```bash
-./tapsend.py --port <serial-device> --baud <rate> \
+./tapdial.py --port <serial-device> --baud <rate> \
     --dial <access-number> --pager <destination> --message "text"
 ```
 
 Example (the setup verified against a USR Courier):
 
 ```bash
-./tapsend.py --port /dev/cu.usbserial-AB0NW409 --baud 2400 \
+./tapdial.py --port /dev/cu.usbserial-AB0NW409 --baud 2400 \
     --dial 18005551234 --pager 5551234567 --message "hello from TAP"
 ```
 
@@ -100,7 +100,7 @@ just the destination cell number.
 - **Access number:** provided to accounts by the service.
 - **Verify a connection:** on a good call the terminal identifies itself with `110 1.8`
   and, for a bad destination, rejects it with `511 Invalid Pager ID` and `<RS>` — the
-  same responses `tapsend.py` was tested against.
+  same responses `tapdial.py` was tested against.
 
 See their site for current access numbers, pricing, and account setup.
 

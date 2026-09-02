@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tapsend - send an alphanumeric page/SMS via the Telocator Alphanumeric Protocol (TAP).
+tapdial - send an alphanumeric page/SMS via the Telocator Alphanumeric Protocol (TAP).
 
 Dials a paging terminal through a Hayes/AT modem and delivers one message to one
 destination using the automatic-mode TAP handshake (remote-entry-device side).
@@ -10,7 +10,7 @@ comments below refer to that file. That transcription is the authority; if this
 program and the spec disagree, the spec is right.
 
 Example:
-    ./tapsend.py --port /dev/cu.usbserial-AB0NW409 --baud 1200 \\
+    ./tapdial.py --port /dev/cu.usbserial-AB0NW409 --baud 1200 \\
         --dial 18005551234 --pager 5551234567 --message "hello from TAP"
 """
 
@@ -392,7 +392,7 @@ def main(argv):
     bytesize, parity = framing_params(args.framing)
     timers = dict(DEFAULT_TIMERS)
 
-    print("tapsend: %s @ %d %s  ->  dial %s, pager %s"
+    print("tapdial: %s @ %d %s  ->  dial %s, pager %s"
           % (args.port, args.baud, args.framing, args.dial, args.pager), flush=True)
 
     ser = serial.Serial(
