@@ -86,6 +86,24 @@ These were verified end-to-end against a live TAP access number, which returns
 - `&M5` **requires** ARQ (it does not disable it); that is why a good connection reports
   `CONNECT 2400/ARQ`.
 
+## Available TAP service: TAPGATEWAY.COM
+
+Classic paging carriers have largely shut down their TAP terminals, so a public
+TAP-to-SMS bridge is a convenient way to actually exercise this program. **TAP
+Gateway** (<https://www.tapgateway.com>) answers standard TAP dial-up calls and relays
+each page as an SMS (or email) to any cellular carrier — so the `--pager` argument is
+just the destination cell number.
+
+- **Framing / baud:** standard TAP — 7 data bits, even parity, 1 stop bit (`--framing 7E1`,
+  the default), up to 2400 baud. It accepts modern modems up to 56K, but the notes above
+  (2400, error-corrected) still apply for a clean data phase.
+- **Access number:** provided to accounts by the service.
+- **Verify a connection:** on a good call the terminal identifies itself with `110 1.8`
+  and, for a bad destination, rejects it with `511 Invalid Pager ID` and `<RS>` — the
+  same responses `tapsend.py` was tested against.
+
+See their site for current access numbers, pricing, and account setup.
+
 ## Protocol reference
 
 `TAP_V1P8.md` is a faithful transcription of the TAP v1.8 specification (Feb 1997).
